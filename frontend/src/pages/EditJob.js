@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function EditJob() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ function EditJob() {
   const fetchJob = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/jobs/${id}`
+        `${API_URL}/api/jobs/${id}`
       );
 
       const job = res.data;
@@ -57,7 +59,7 @@ function EditJob() {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `http://localhost:5000/api/jobs/${id}`,
+        `${API_URL}/api/jobs/${id}`,
         {
           ...formData,
           skills: formData.skills

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function SavedJobs() {
   const [jobs, setJobs] = useState([]);
 
@@ -14,7 +16,7 @@ function SavedJobs() {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:5000/api/saved-jobs",
+        `${API_URL}/api/saved-jobs`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -33,7 +35,7 @@ function SavedJobs() {
       const token = localStorage.getItem("token");
 
       await axios.delete(
-        `http://localhost:5000/api/saved-jobs/${savedJobId}`,
+        `${API_URL}/api/saved-jobs/${savedJobId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

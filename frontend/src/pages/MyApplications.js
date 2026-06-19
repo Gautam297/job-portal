@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function MyApplications() {
   const [applications, setApplications] = useState([]);
 
@@ -14,7 +16,7 @@ function MyApplications() {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:5000/api/applications/my-applications",
+        `${API_URL}/api/applications/my-applications`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

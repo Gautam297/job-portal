@@ -3,6 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Applicants() {
   const { jobId } = useParams();
 
@@ -17,7 +19,7 @@ function Applicants() {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        `http://localhost:5000/api/applications/job/${jobId}`,
+        `${API_URL}/api/applications/job/${jobId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -38,7 +40,7 @@ function Applicants() {
     const token = localStorage.getItem("token");
 
     await axios.put(
-      `http://localhost:5000/api/applications/status/${applicationId}`,
+      `${API_URL}/api/applications/status/${applicationId}`,
       { status },
       {
         headers: {

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Dashboard() {
   const [stats, setStats] = useState(null);
 
@@ -14,7 +16,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:5000/api/jobs/dashboard/stats",
+        `${API_URL}/api/jobs/dashboard/stats`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

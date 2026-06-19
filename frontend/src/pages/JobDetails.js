@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function JobDetails() {
   const { id } = useParams();
   const [job, setJob] = useState(null);
@@ -13,7 +15,7 @@ function JobDetails() {
   const fetchJob = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/jobs/${id}`
+        `${API_URL}/api/jobs/${id}`
       );
 
       setJob(res.data);
@@ -27,7 +29,7 @@ function JobDetails() {
       const token = localStorage.getItem("token");
 
       const res = await axios.post(
-        `http://localhost:5000/api/applications/${id}`,
+        `${API_URL}/api/applications/${id}`,
         {},
         {
           headers: {
@@ -50,7 +52,7 @@ function JobDetails() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        `http://localhost:5000/api/saved-jobs/${job._id}`,
+        `${API_URL}/api/saved-jobs/${job._id}`,
         {},
         {
           headers: {

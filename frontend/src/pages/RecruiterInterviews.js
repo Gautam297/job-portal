@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const RecruiterInterviews = () => {
   const [interviews, setInterviews] = useState([]);
 
@@ -10,7 +12,7 @@ const RecruiterInterviews = () => {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          "http://localhost:5000/api/interviews",
+          `${API_URL}/api/interviews`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

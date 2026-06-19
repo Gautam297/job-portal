@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import JobCard from "../components/JobCard";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Home() {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
@@ -18,7 +20,7 @@ function Home() {
   const fetchJobs = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/jobs"
+        `${API_URL}/api/jobs`
       );
 
       setJobs(res.data);

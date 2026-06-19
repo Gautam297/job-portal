@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function CreateJob() {
   const navigate = useNavigate();
 
@@ -30,7 +32,7 @@ function CreateJob() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://localhost:5000/api/jobs",
+        `${API_URL}/api/jobs`,
         {
           ...formData,
           skills: formData.skills

@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Profile() {
   const [phone, setPhone] = useState("");
   const [skills, setSkills] = useState("");
@@ -14,7 +16,7 @@ function Profile() {
   const updateProfile = async () => {
     try {
       await axios.put(
-        "http://localhost:5000/api/profile",
+        `${API_URL}/api/profile`,
         {
           phone,
           skills,
@@ -41,7 +43,7 @@ function Profile() {
       formData.append("resume", resume);
 
       const res = await axios.post(
-        "http://localhost:5000/api/profile/resume",
+        `${API_URL}/api/profile/resume`,
         formData,
         {
           headers: {

@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function CandidateProfile() {
   const { id } = useParams();
 
@@ -17,7 +19,7 @@ function CandidateProfile() {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        `http://localhost:5000/api/profile/user/${id}`,
+        `${API_URL}/api/profile/user/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
