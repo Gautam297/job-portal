@@ -40,8 +40,12 @@ export const getJobs = async (req, res) => {
       .populate("createdBy", "name email")
       .sort({ createdAt: -1 });
 
+    console.log("Jobs Found:", jobs.length);
+
     res.json(jobs);
   } catch (error) {
+    console.log(error);
+
     res.status(500).json({
       message: error.message,
     });
